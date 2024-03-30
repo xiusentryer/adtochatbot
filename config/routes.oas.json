@@ -1,0 +1,180 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Zuplo API"
+  },
+  "paths": {
+    "/getall": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get All Ads",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/hello-world)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "d94af68b-6773-4dd1-af0a-96e4562a7a98"
+      }
+    },
+    "/get_ad_to_show/{chatbotapiKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get ad to show",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_ad_to_show)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "6a63902f-fd68-4e80-a19d-88acd8734f87"
+      }
+    },
+    "/get_all_ad_info/{chatbotapiKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get all ad info",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_all_ad_info)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": []
+          }
+        },
+        "operationId": "8337c171-4d9a-4a84-9ecc-cad7a9ef43e6"
+      }
+    },
+    "/get_ad_info_by_id/{adId}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get ad info by id",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_ad_info_by_id)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "2c8a4ee7-b514-46c9-8333-c8efb28ba87a"
+      }
+    },
+    "/record_click": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "Record User Click",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/record_click)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "61906106-c4db-4d4d-8a3f-c9fa92452432"
+      }
+    },
+    "/record_impression": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "put": {
+        "summary": "Record Impression",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/record_impression)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "ee0d3080-4c86-46fd-8c44-b38264c80d08"
+      }
+    },
+    "/get_ad_by_id/{adId}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get ad by ID",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_ad_by_id)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "c98eb657-efab-497e-bb78-ff92d687a3c0"
+      }
+    }
+  }
+}

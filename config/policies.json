@@ -1,0 +1,63 @@
+{
+  "policies": [
+    {
+      "handler": {
+        "export": "ClearHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "exclude": [
+            "content-type"
+          ]
+        }
+      },
+      "name": "clear-headers-inbound",
+      "policyType": "clear-headers-inbound"
+    },
+    {
+      "handler": {
+        "export": "SetHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            {
+              "name": "apikey",
+              "value": "$env(SUPABASE_API_KEY)",
+              "overwrite": true
+            },
+            {
+              "name": "Authorization",
+              "value": "$env(SUPABASE_AUTHZ_HEADER)",
+              "overwrite": true
+            }
+          ]
+        }
+      },
+      "name": "set-headers-inbound",
+      "policyType": "set-headers-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": true,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound",
+      "policyType": "api-key-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound-1",
+      "policyType": "api-key-inbound"
+    }
+  ]
+}
