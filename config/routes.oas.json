@@ -190,11 +190,9 @@
         "x-zuplo-route": {
           "corsPolicy": "anything-goes",
           "handler": {
-            "export": "urlForwardHandler",
-            "module": "$import(@zuplo/runtime)",
-            "options": {
-              "baseUrl": "https://echo.zuplo.io"
-            }
+            "export": "default",
+            "module": "$import(./modules/get_chatbot_info)",
+            "options": {}
           },
           "policies": {
             "inbound": [
@@ -205,6 +203,27 @@
           }
         },
         "operationId": "c946ae59-d186-4f62-9265-23beabe359dc"
+      }
+    },
+    "/get_ad_for_GPTs/{chatbotapiKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "Get Ad For GPTs",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_ad_for_GPTs)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": []
+          }
+        },
+        "operationId": "c8abd3b6-24f5-4179-b25b-5e9c0d1bc91c"
       }
     }
   }
