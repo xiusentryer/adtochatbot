@@ -1,6 +1,6 @@
 {
   "$schema": "https://cdn.zuplo.com/schemas/dev-portal.json",
-  "enabled": false,
+  "enabled": true,
   "enableAuthentication": false,
   "pageTitle": "AdToChatBot",
   "requireAuthentication": false,

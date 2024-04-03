@@ -70,7 +70,11 @@
             "options": {}
           },
           "policies": {
-            "inbound": []
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
           }
         },
         "operationId": "8337c171-4d9a-4a84-9ecc-cad7a9ef43e6"
@@ -174,6 +178,33 @@
           }
         },
         "operationId": "c98eb657-efab-497e-bb78-ff92d687a3c0"
+      }
+    },
+    "/get_chatbot_info/{chatbotapiKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get ChatBot Info",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "anything-goes",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "https://echo.zuplo.io"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "c946ae59-d186-4f62-9265-23beabe359dc"
       }
     }
   }
