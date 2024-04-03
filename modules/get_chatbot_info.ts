@@ -45,7 +45,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const totalImpressions = adsStats.reduce((acc, curr) => acc + curr.impressions, 0);
     const totalClicks = adsStats.reduce((acc, curr) => acc + curr.clicks, 0);
     const totalRevenue = adsStats.reduce((acc, curr) => acc + curr.revenue, 0);
-    const ctr = totalImpressions !== 0 ? totalClicks / totalImpressions : 0;
+    const ctr = totalImpressions !== 0 ? parseFloat((totalClicks / totalImpressions * 100).toFixed(1)) : 0.0;
 
     // Construct and return the final object
     return {

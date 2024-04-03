@@ -8,6 +8,13 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     context.log.error("No chatbotapiKey provided in the path.");
     return "Error: No chatbot apiKey provided.";
   }
+  
+  //retrieve the conversation_context from the API call.
+  const user_text = request.query["prompt"];
+  if (!user_text) {
+    context.log.error("No conversation context provided.");
+    return "Error: No conversation context provided.";
+  }
 
   // Supabase API Key
   const supabaseKey = environment.SUPABASE_API_KEY;
@@ -44,6 +51,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     const ads = await adsResponse.json();
     if (ads.length === 0) throw new Error("No ads found for the chatbot");
+
+    //Instead of selecting a random advertisement, call a chatgpt text editor to search for the most ideal advertisement (using the advertisement.text) from the database in relation to the user_text
 
     // Select a random advertisement
     const randomAdIndex = Math.floor(Math.random() * ads.length);
