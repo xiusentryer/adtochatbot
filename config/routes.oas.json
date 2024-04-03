@@ -122,6 +122,7 @@
           "policies": {
             "inbound": [
               "api-key-inbound",
+              "rate-limit-inbound",
               "clear-headers-inbound",
               "set-headers-inbound"
             ]
@@ -188,7 +189,7 @@
         "summary": "Get ChatBot Info",
         "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
         "x-zuplo-route": {
-          "corsPolicy": "anything-goes",
+          "corsPolicy": "none",
           "handler": {
             "export": "default",
             "module": "$import(./modules/get_chatbot_info)",
@@ -220,10 +221,35 @@
             "options": {}
           },
           "policies": {
-            "inbound": []
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
           }
         },
         "operationId": "c8abd3b6-24f5-4179-b25b-5e9c0d1bc91c"
+      }
+    },
+    "/redirect": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Redirect",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/redirect)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": []
+          }
+        },
+        "operationId": "9aec75ef-163f-4083-ac6d-c48a2a9b6ec9"
       }
     }
   }
