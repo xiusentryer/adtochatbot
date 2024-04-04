@@ -10,7 +10,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   }
   
   //retrieve the conversation_context from the API call.
-  const user_text = request.query["prompt"];
+  const user_text = request.query["conversation_context"];
   if (!user_text) {
     context.log.error("No conversation context provided.");
     return "Error: No conversation context provided.";
