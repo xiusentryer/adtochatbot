@@ -1,12 +1,14 @@
 {
   "$schema": "https://cdn.zuplo.com/schemas/dev-portal.json",
   "enabled": true,
-  "enableAuthentication": false,
+  "enableAuthentication": true,
   "pageTitle": "AdToChatBot",
   "requireAuthentication": false,
   "generateExamples": true,
   "enableMonetization": false,
   "authentication": {
-    "provider": "auth0"
+    "provider": "external",
+    "loginUrl": "https://qzywnrspxbcmlbhhnbxe.supabase.co/login",
+    "logoutUrl": "https://qzywnrspxbcmlbhhnbxe.supabase.co/sign-out"
   }
 }
