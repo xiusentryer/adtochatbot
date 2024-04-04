@@ -211,7 +211,7 @@
         "pathMode": "open-api"
       },
       "post": {
-        "summary": "Get Ad For GPTs",
+        "summary": "getAdInfo",
         "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
         "x-zuplo-route": {
           "corsPolicy": "anything-goes",
