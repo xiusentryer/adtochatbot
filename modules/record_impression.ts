@@ -41,9 +41,22 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     if (ads.length === 0) throw new Error("Advertisement not found with the given ad_id");
     const advertisementId = ads[0].id;
 
-    // Now, increment the impressions for the corresponding chatbot_ad entry
-    // This assumes you have a mechanism (like a stored procedure) to handle the increment
-    // Replace the following URL with the actual one pointing to your update logic
+    // Fetch the current impressions for the corresponding chatbot_ad entry
+    response = await fetch(`${baseUrl}/chatbot_ads?select=impressions&chatbot_id=eq.${chatbotId}&ad_id=eq.${advertisementId}`, {
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    let chatbotAds = await response.json();
+    if (chatbotAds.length === 0) throw new Error("chatbot_ad entry not found");
+    const currentImpressions = chatbotAds[0].impressions;
+
+    // Increment the impressions and update the entry
+    const newImpressions = currentImpressions + 1;
+
     const updateImpressionsUrl = `${baseUrl}/chatbot_ads?chatbot_id=eq.${chatbotId}&ad_id=eq.${advertisementId}`;
     response = await fetch(updateImpressionsUrl, {
       method: 'PATCH', // Use PATCH for partial updates
@@ -54,7 +67,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         'Prefer': 'return=representation',
       },
       body: JSON.stringify({
-        impressions: 'impressions + 1', // This exact syntax might not work; see note below
+        impressions: newImpressions,
       }),
     });
 

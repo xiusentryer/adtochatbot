@@ -72,8 +72,26 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     const clickRecord = await clickResponse.json();
 
+    // Fetch the current clicks and revenue for the corresponding chatbot_ad entry
+    let response = await fetch(`https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=clicks,revenue&chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`, {
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    let chatbotAds = await response.json();
+    if (chatbotAds.length === 0) throw new Error("chatbot_ad entry not found");
+    const currentClicks = chatbotAds[0].clicks;
+    const currentRevenue = chatbotAds[0].revenue;
+
+    // Increment the impressions and update the entry
+    const newClicks = currentClicks + 1;
+    const newRevenue = currentRevenue + 0.5;
+
     const updateImpressionsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`;
-    let response = await fetch(updateImpressionsUrl, {
+    response = await fetch(updateImpressionsUrl, {
       method: 'PATCH', // Use PATCH for partial updates
       headers: {
         'apikey': supabaseKey,
@@ -82,8 +100,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         'Prefer': 'return=representation',
       },
       body: JSON.stringify({
-        clicks: 'clicks + 1',
-        revenue: 'revenue + 1'
+        clicks: newClicks,
+        revenue: newRevenue,
       }),
     });
 
