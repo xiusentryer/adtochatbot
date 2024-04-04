@@ -21,7 +21,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   const supabaseKey = environment.SERVICE_ROLE_KEY;
   const zuploKey = environment.ZUPLOKEY;
 
-  const chatbotAdsLookupUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=link&chatbot_id=eq.${chatbotId}&ad_id=eq.${adId}`;
+  const chatbotAdsLookupUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?select=link&id=eq.${adId}`;
   let chatbotAdsResponse = await fetch(chatbotAdsLookupUrl, {
     headers: {
       'apikey': supabaseKey,
@@ -31,13 +31,13 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   });
 
   if (!chatbotAdsResponse.ok) {
-    context.log.error("Failed to find record in chatbot_ads with the given chatbot_id and ad_id");
-    return { status: 404, body: "Record not found in chatbot_ads." };
+    context.log.error("Failed to find record in advertisement with the given parameters");
+    return { status: 404, body: "Record not found in ads database." };
   }
 
   let chatbotAds = await chatbotAdsResponse.json();
   if (chatbotAds.length === 0) {
-    return { status: 404, body: "Record not found in chatbot_ads." };
+    return { status: 404, body: "Record not found in ads database." };
   }
   const destinationUrl = chatbotAds[0].link;
 
@@ -45,7 +45,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   const timestamp = Date.now();
   const userId = `${userIP}_${timestamp}`;
 
-  const recordClickUrl = "https://adtochatbot-api-main-3fc4fde.d2.zuplo.dev/record_click";
+  const recordClickUrl = "https://api.adtochatbot.com/record_click";
   try {
     const response = await fetch(recordClickUrl, {
       method: "POST",
@@ -54,7 +54,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         'Authorization': `Bearer ${zuploKey}`,
       },
       body: JSON.stringify({
-        ad_id: adId,
+        ad_id: chatbotAds[0].ad_id,
         user_id: userId,
       }),
     });

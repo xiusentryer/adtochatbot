@@ -10,20 +10,21 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   const requestBody = await request.json();
   const ad_id = requestBody.ad_id;
+  const chatbot_id = requestBody.chatbot_id;
   const user_id = requestBody.user_id;
 
-  if (!ad_id || !user_id) {
+  if (!ad_id || !user_id || !chatbot_id) {
     return {
       status: 400,
-      body: "Bad Request: Missing ad_id or user_id",
+      body: "Bad Request: Missing ad_id or user_id or chatbot_id",
     };
   }
 
   // Supabase API Key
   const supabaseKey = environment.SUPABASE_API_KEY;
 
-  // Check if the advertisement exists
-  const adExistenceUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${ad_id}&select=id`;
+  // Check if the chatbot_ads relationship exists
+  const adExistenceUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}&chatbot_id=eq.${chatbot_id}&select=ad_id`;
   try {
     let adResponse = await fetch(adExistenceUrl, {
       method: 'GET',
@@ -35,7 +36,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     });
 
     if (!adResponse.ok) {
-      throw new Error(`Failed to verify advertisement existence: ${adResponse.statusText}`);
+      throw new Error(`Failed to verify campaign's existence: ${adResponse.statusText}`);
     }
 
     const adData = await adResponse.json();
@@ -58,6 +59,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       },
       body: JSON.stringify({
         ad_id: ad_id,
+        chatbot_id: chatbot_id,
         user_id: user_id,
         timestamp: new Date().toISOString(),
       }),
@@ -69,6 +71,28 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     }
 
     const clickRecord = await clickResponse.json();
+
+    const updateImpressionsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`;
+    let response = await fetch(updateImpressionsUrl, {
+      method: 'PATCH', // Use PATCH for partial updates
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+      },
+      body: JSON.stringify({
+        clicks: 'clicks + 1',
+        revenue: 'revenue + 1'
+      }),
+    });
+
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`Failed to increment impressions: ${errorMessage}`);
+    }
+
+    context.log.info("Impressions incremented successfully");
 
     return {
       status: 200,
