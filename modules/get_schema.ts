@@ -28,7 +28,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     },
     servers: [
       {
-        url: "https://adtochatbot-api-main-3fc4fde.d2.zuplo.dev",
+        url: "https://adtochatbot-api-main-aca9a7f.zuplo.app",
         description: "Main AdToChatBot API server",
       },
     ],
