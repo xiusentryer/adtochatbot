@@ -251,6 +251,31 @@
         },
         "operationId": "9aec75ef-163f-4083-ac6d-c48a2a9b6ec9"
       }
+    },
+    "/GPTs/{chatbotapiKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get Schema",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_schema)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "f7a4da96-24ca-4e1c-b83e-b2e6b412f2de"
+      }
     }
   }
 }
