@@ -61,7 +61,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         ad_id: ad_id,
         chatbot_id: chatbot_id,
         user_id: user_id,
-        ad_id_user_id: ad_id+user_id,
+        ad_id_user_id: user_id + '_' + ad_id,
         timestamp: new Date().toISOString(),
       }),
     });
