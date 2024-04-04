@@ -72,6 +72,23 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       body: JSON.stringify({ impressions: newImpressions }),
     });
 
+    // Retrieve the custom advertisement link from chatbot_ads
+    const customURLResponse= await fetch(updateImpressionUrl, {
+      method: 'GET',
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const customURL = await customURLResponse.json();
+    if(customURL.length === 0) throw new Error("Failed to fetch custom URL");
+
+    const URL = customURL[0].link;
+    context.log.info("Successfully fetched custom URL");
+
+
     // Retrieve the full advertisement details
     const adDetailsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${selectedAd.ad_id}`;
     const adDetailsResponse = await fetch(adDetailsUrl, {
@@ -88,9 +105,9 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const ad = adDetails[0];
     let formattedText = ad.text;
     if (ad.text.includes(ad.highlight)) {
-      formattedText = ad.text.replace(ad.highlight, `${ad.highlight}(${ad.link})`);
+      formattedText = ad.text.replace(ad.highlight, `${ad.highlight}(${URL})`);
     } else {
-      formattedText += ` (${ad.link})`;
+      formattedText += ` (${URL})`;
     }
 
     context.log.info("Successfully processed advertisement impression and retrieved details.");
