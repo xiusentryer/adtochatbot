@@ -53,6 +53,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     if (ads.length === 0) throw new Error("No ads found for the chatbot");
 
     //Instead of selecting a random advertisement, call a chatgpt text editor to search for the most ideal advertisement (using the advertisement.text) from the database in relation to the user_text
+    
 
     // Select a random advertisement
     const randomAdIndex = Math.floor(Math.random() * ads.length);
