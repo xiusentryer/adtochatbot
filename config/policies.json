@@ -40,7 +40,7 @@
         "export": "ApiKeyInboundPolicy",
         "module": "$import(@zuplo/runtime)",
         "options": {
-          "allowUnauthenticatedRequests": true,
+          "allowUnauthenticatedRequests": false,
           "cacheTtlSeconds": 60
         }
       },
