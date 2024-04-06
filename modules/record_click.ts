@@ -72,7 +72,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       const errorMessage = await adUpdateResponse.text();
       throw new Error(`Failed to update advertisement budget: ${errorMessage}`);
     }
-
+/*
     if (newBudget - bid < 0) {
     // Prepare the URL for deletion
     const deleteUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}`;
@@ -99,6 +99,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         // You might want to log this or handle accordingly in your application
     }
 }
+*/
 
 
 
