@@ -90,7 +90,12 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     // Increment the impressions and update the entry
     const newClicks = currentClicks + 1;
-    const newRevenue = currentRevenue + 0.2;
+    let newRevenue = currentRevenue + 0.2;
+
+    //add extra for smartpromptai@gmail.com
+    if(chatbot_id === 31) {
+      newRevenue = newRevenue + 0.15;
+    }
 
     const updateImpressionsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`;
     response = await fetch(updateImpressionsUrl, {
