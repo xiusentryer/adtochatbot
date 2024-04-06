@@ -104,6 +104,9 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     if (adDetails.length === 0) throw new Error("Failed to fetch details for the selected advertisement");
 
     const ad = adDetails[0];
+
+    if(ad.budget-ad.bid<0) throw new Error("Failed to fetch ads.")
+
     let formattedText = ad.text;
     if (ad.text.includes(ad.highlight)) {
       formattedText = ad.text.replace(ad.highlight, `${ad.highlight}(${URL})`);
