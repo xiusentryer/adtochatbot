@@ -14,7 +14,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Fetch the advertisement details
-    const adDetailsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${adId}&select=id,text,link,highlight,budget,bid,payperclick`;
+    const adDetailsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${adId}&select=*`;
     let response = await fetch(adDetailsUrl, {
       headers: {
         'apikey': supabaseKey,
@@ -48,7 +48,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const totalImpressions = chatbotAds.reduce((acc, curr) => acc + curr.impressions, 0);
     const totalClickCount = chatbotAds.reduce((acc, curr) => acc + curr.clicks, 0);
     const ctr = totalImpressions !== 0 ? parseFloat((totalClickCount / totalImpressions * 100).toFixed(1)) : 0.0;
-    const total_paid = totalClickCount*ad.bid;
+    const total_spend = totalClickCount*ad.bid;
+    
 
     // Construct and return the desired output
     const result = {
@@ -62,7 +63,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       bid: ad.bid,
       payperclick: ad.payperclick,
       ctr: ctr,
-      total_paid: total_paid
+      total_spend: total_spend
     };
 
     context.log.info(`Successfully fetched advertisement details and metrics`);
