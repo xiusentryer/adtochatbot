@@ -83,6 +83,18 @@
       },
       "name": "rate-limit-inbound",
       "policyType": "rate-limit-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound-3",
+      "policyType": "api-key-inbound"
     }
   ]
 }
