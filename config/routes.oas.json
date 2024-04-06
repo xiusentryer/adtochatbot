@@ -276,6 +276,31 @@
         },
         "operationId": "f7a4da96-24ca-4e1c-b83e-b2e6b412f2de"
       }
+    },
+    "/get_campaign_details/{ad_id}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get Campaign Details",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/get_campaign_details)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "5a998046-d7b5-4cca-8e15-476f5c8ae9f2"
+      }
     }
   }
 }
