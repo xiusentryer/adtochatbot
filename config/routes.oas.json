@@ -302,7 +302,7 @@
         "operationId": "5a998046-d7b5-4cca-8e15-476f5c8ae9f2"
       }
     },
-    "/acceptpayment/{adId}": {
+    "/acceptpayment/{user_id}": {
       "x-zuplo-path": {
         "pathMode": "open-api"
       },
@@ -313,7 +313,7 @@
           "corsPolicy": "none",
           "handler": {
             "export": "default",
-            "module": "$import(./modules/hello-world)",
+            "module": "$import(./modules/acceptpayment)",
             "options": {}
           },
           "policies": {
