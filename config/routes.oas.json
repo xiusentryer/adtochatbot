@@ -113,7 +113,7 @@
         "summary": "Record User Click",
         "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
         "x-zuplo-route": {
-          "corsPolicy": "anything-goes",
+          "corsPolicy": "none",
           "handler": {
             "export": "default",
             "module": "$import(./modules/record_click)",
