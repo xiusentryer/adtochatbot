@@ -34,7 +34,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Fetch the advertisement data to get the current budget
-    const adFetchUrl = `https://https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${ad_id}`;
+    const adFetchUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${ad_id}`;
     const adFetchResponse = await fetch(adFetchUrl, {
       method: 'GET',
       headers: {
