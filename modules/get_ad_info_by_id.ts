@@ -47,8 +47,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     // Aggregate impressions and clicks
     const totalImpressions = chatbotAds.reduce((acc, curr) => acc + curr.impressions, 0);
     const totalClickCount = chatbotAds.reduce((acc, curr) => acc + curr.clicks, 0);
-
-    
+    const ctr = totalImpressions !== 0 ? parseFloat((totalClickCount / totalImpressions * 100).toFixed(1)) : 0.0;
+    const total_paid = totalClickCount*ad.bid;
 
     // Construct and return the desired output
     const result = {
@@ -60,7 +60,9 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       total_click_count: totalClickCount,
       budget: ad.budget,
       bid: ad.bid,
-      payperclick: ad.payperclick
+      payperclick: ad.payperclick,
+      ctr: ctr,
+      total_paid: total_paid
     };
 
     context.log.info(`Successfully fetched advertisement details and metrics`);
