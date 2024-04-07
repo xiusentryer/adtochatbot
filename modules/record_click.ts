@@ -24,7 +24,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   const supabaseKey = environment.SUPABASE_API_KEY;
 
   // Check if the chatbot_ads relationship exists
-  const adExistenceUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}&chatbot_id=eq.${chatbot_id}&select=ad_id`;
+  
   try {
     // Fetch the advertisement data
     let adFetchUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${ad_id}`;
@@ -74,6 +74,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     }
 
     if (newBudget - bid < 0) {
+    
+    /**
     // Prepare the URL for deletion
     const deleteUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}`;
 
@@ -98,12 +100,12 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         console.log("Deleted chatbot_ads instances successfully");
         // You might want to log this or handle accordingly in your application
     }
+*/
 }
 
-
-
-
     //record click
+    /*
+    const adExistenceUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}&chatbot_id=eq.${chatbot_id}&select=ad_id`;
     let adResponse = await fetch(adExistenceUrl, {
       method: 'GET',
       headers: {
@@ -124,7 +126,9 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         body: "Error: Advertisement does not exist.",
       };
     }
-    const clickRecord = 0;
+    */
+
+    
     if(user_id !== "owner") {
     // Advertisement exists, proceed to record the click
     const clicksUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/clicks`;
@@ -149,9 +153,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       const errorMessage = await clickResponse.text();
       throw new Error(`Failed to record click: ${errorMessage}`);
     }
-    
-    const clickRecord = await clickResponse.json();
-    
+        
     // Fetch the current clicks and revenue for the corresponding chatbot_ad entry
     let response = await fetch(`https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=clicks,revenue&chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`, {
       headers: {
@@ -201,7 +203,6 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       status: 200,
       body: {
         message: "Click recorded successfully",
-        click: clickRecord,
       },
     };
   } catch (error) {
