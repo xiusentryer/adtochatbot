@@ -326,6 +326,30 @@
         },
         "operationId": "dcc7ff13-1a3f-4d07-84e8-c4c129f18915"
       }
+    },
+    "/policy": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Policy",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "redirectHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "location": "https://adtochatbot.com/policy",
+              "status": 302
+            }
+          },
+          "policies": {
+            "inbound": []
+          }
+        },
+        "operationId": "52d79dd0-0325-4f5e-bc6d-f0e77b2e3332"
+      }
     }
   }
 }
