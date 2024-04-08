@@ -8,7 +8,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   context.log.info(`Fetching data from Supabase`);
 
   // The Supabase URL
-  const supabaseUrl = "https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?select=*";
+  const supabaseUrl = "https://app.adtochatbot.com/rest/v1/advertisement?select=*";
 
   // Supabase API Key (replace 'YOUR_SUPABASE_KEY' with your actual key)
   const supabaseKey = environment.SUPABASE_API_KEY;

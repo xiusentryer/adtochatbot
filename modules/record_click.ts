@@ -28,7 +28,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   try {
     if(user_id !== "owner") {
     // Fetch the advertisement data
-    let adFetchUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${ad_id}`;
+    let adFetchUrl = `https://app.adtochatbot.com/rest/v1/advertisement?id=eq.${ad_id}`;
     let adFetchResponse = await fetch(adFetchUrl, {
       method: 'GET',
       headers: {
@@ -57,7 +57,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const newBudget = budget - bid;
 
     // Update the advertisement's budget
-    let adUpdateUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${ad_id}`;
+    let adUpdateUrl = `https://app.adtochatbot.com/rest/v1/advertisement?id=eq.${ad_id}`;
     let adUpdateResponse = await fetch(adUpdateUrl, {
       method: 'PATCH',
       headers: {
@@ -78,7 +78,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     
     /**
     // Prepare the URL for deletion
-    const deleteUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}`;
+    const deleteUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?ad_id=eq.${ad_id}`;
 
     // Perform the deletion request
     let deleteResponse = await fetch(deleteUrl, {
@@ -106,7 +106,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     //record click
     /*
-    const adExistenceUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad_id}&chatbot_id=eq.${chatbot_id}&select=ad_id`;
+    const adExistenceUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?ad_id=eq.${ad_id}&chatbot_id=eq.${chatbot_id}&select=ad_id`;
     let adResponse = await fetch(adExistenceUrl, {
       method: 'GET',
       headers: {
@@ -132,7 +132,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     
     
     // Advertisement exists, proceed to record the click
-    const clicksUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/clicks`;
+    const clicksUrl = `https://app.adtochatbot.com/rest/v1/clicks`;
     const clickResponse = await fetch(clicksUrl, {
       method: 'POST',
       headers: {
@@ -156,7 +156,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     }
         
     // Fetch the current clicks and revenue for the corresponding chatbot_ad entry
-    let response = await fetch(`https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=clicks,revenue&chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`, {
+    let response = await fetch(`https://app.adtochatbot.com/rest/v1/chatbot_ads?select=clicks,revenue&chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`, {
       headers: {
         'apikey': supabaseKey,
         'Authorization': `Bearer ${supabaseKey}`,
@@ -178,7 +178,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       newRevenue = newRevenue + 0.15;
     }
 
-    const updateImpressionsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`;
+    const updateImpressionsUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?chatbot_id=eq.${chatbot_id}&ad_id=eq.${ad_id}`;
     response = await fetch(updateImpressionsUrl, {
       method: 'PATCH', // Use PATCH for partial updates
       headers: {

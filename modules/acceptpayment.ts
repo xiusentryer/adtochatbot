@@ -34,7 +34,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Fetch the advertisement data to get the current budget
-    const adFetchUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${ad_id}`;
+    const adFetchUrl = `https://app.adtochatbot.com/rest/v1/advertisement?ad_id=eq.${ad_id}`;
     const adFetchResponse = await fetch(adFetchUrl, {
       method: 'GET',
       headers: {
@@ -60,7 +60,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const newBudget = adData.budget + addbudget;
 
     // Update the advertisement's budget
-    const adUpdateUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${ad_id}`;
+    const adUpdateUrl = `https://app.adtochatbot.com/rest/v1/advertisement?ad_id=eq.${ad_id}`;
     const adUpdateResponse = await fetch(adUpdateUrl, {
       method: 'PATCH',
       headers: {

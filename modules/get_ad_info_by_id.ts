@@ -14,7 +14,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Fetch the advertisement details
-    const adDetailsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq.${adId}&select=*`;
+    const adDetailsUrl = `https://app.adtochatbot.com/rest/v1/advertisement?ad_id=eq.${adId}&select=*`;
     let response = await fetch(adDetailsUrl, {
       headers: {
         'apikey': supabaseKey,
@@ -31,7 +31,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const ad = adDetails[0];
 
     // Fetch all related chatbot_ads to aggregate impressions and clicks
-    const chatbotAdsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?ad_id=eq.${ad.id}&select=impressions,clicks`;
+    const chatbotAdsUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?ad_id=eq.${ad.id}&select=impressions,clicks`;
     response = await fetch(chatbotAdsUrl, {
       headers: {
         'apikey': supabaseKey,

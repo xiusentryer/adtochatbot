@@ -15,7 +15,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   }
 
   // The Supabase URL
-  const supabaseUrl = "https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?ad_id=eq." + adId + "&select=text,link,highlight";
+  const supabaseUrl = "https://app.adtochatbot.com/rest/v1/advertisement?ad_id=eq." + adId + "&select=text,link,highlight";
 
   // Supabase API Key (replace 'YOUR_SUPABASE_KEY' with your actual key)
   const supabaseKey = environment.SUPABASE_API_KEY;
