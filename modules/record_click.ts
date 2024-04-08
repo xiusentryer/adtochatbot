@@ -19,13 +19,14 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       body: "Bad Request: Missing ad_id or user_id or chatbot_id",
     };
   }
-
+  
   // Supabase API Key
   const supabaseKey = environment.SUPABASE_API_KEY;
 
   // Check if the chatbot_ads relationship exists
   
   try {
+    if(user_id !== "owner") {
     // Fetch the advertisement data
     let adFetchUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${ad_id}`;
     let adFetchResponse = await fetch(adFetchUrl, {
@@ -129,7 +130,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     */
 
     
-    if(user_id !== "owner") {
+    
     // Advertisement exists, proceed to record the click
     const clicksUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/clicks`;
     const clickResponse = await fetch(clicksUrl, {
