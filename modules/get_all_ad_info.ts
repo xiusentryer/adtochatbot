@@ -14,7 +14,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Find the chatbot_id using the apiKey
-    const chatbotUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot?select=id&apiKey=eq.${apiKey}`;
+    const chatbotUrl = `https://app.adtochatbot.com/rest/v1/chatbot?select=id&apiKey=eq.${apiKey}`;
     const chatbotResponse = await fetch(chatbotUrl, {
       headers: {
         'apikey': supabaseKey,
@@ -31,7 +31,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const chatbotId = chatbots[0].id;
 
     // Fetch all ad_ids associated with this chatbot
-    const adsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=ad_id&chatbot_id=eq.${chatbotId}`;
+    const adsUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?select=ad_id&chatbot_id=eq.${chatbotId}`;
     const adsResponse = await fetch(adsUrl, {
       headers: {
         'apikey': supabaseKey,
@@ -47,7 +47,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     // Aggregate details of all advertisements associated with the chatbot
     const adDetailsPromises = ads.map(ad =>
-      fetch(`https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?id=eq.${ad.ad_id}&select=ad_id,text,link,highlight`, {
+      fetch(`https://app.adtochatbot.com/rest/v1/advertisement?id=eq.${ad.ad_id}&select=ad_id,text,link,highlight`, {
         headers: {
           'apikey': supabaseKey,
           'Authorization': `Bearer ${supabaseKey}`,

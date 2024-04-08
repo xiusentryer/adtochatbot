@@ -14,7 +14,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   try {
     // Fetch chatbot information using the apiKey
-    const chatbotUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot?select=id,userid,name,link,created_at,apiKey&apiKey=eq.${apiKey}`;
+    const chatbotUrl = `https://app.adtochatbot.com/rest/v1/chatbot?select=id,userid,name,link,created_at,apiKey&apiKey=eq.${apiKey}`;
     const chatbotResponse = await fetch(chatbotUrl, {
       headers: {
         'apikey': supabaseKey,
@@ -30,7 +30,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const chatbotData = chatbot[0];
 
     // Fetch chatbot_ads data and aggregate impressions, clicks, and revenue
-    const adsStatsUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/chatbot_ads?select=impressions,clicks,revenue&chatbot_id=eq.${chatbotData.id}`;
+    const adsStatsUrl = `https://app.adtochatbot.com/rest/v1/chatbot_ads?select=impressions,clicks,revenue&chatbot_id=eq.${chatbotData.id}`;
     const adsStatsResponse = await fetch(adsStatsUrl, {
       headers: {
         'apikey': supabaseKey,

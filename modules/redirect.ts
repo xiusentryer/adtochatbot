@@ -19,7 +19,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
   }
 
   const supabaseKey = environment.SERVICE_ROLE_KEY;
-  const chatbotAdsLookupUrl = `https://qzywnrspxbcmlbhhnbxe.supabase.co/rest/v1/advertisement?select=link&id=eq.${adId}`;
+  const chatbotAdsLookupUrl = `https://app.adtochatbot.com/rest/v1/advertisement?select=link&id=eq.${adId}`;
   let chatbotAdsResponse = await fetch(chatbotAdsLookupUrl, {
     headers: {
       'apikey': supabaseKey,
