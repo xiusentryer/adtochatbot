@@ -116,7 +116,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     */
     context.log.info("Successfully processed advertisement impression and retrieved details.");
     return {
-      company_name: ad.company_name,
+      intro_text: ad.intro_text,
       target: ad.target,
       text: ad.text,
       link: URL
