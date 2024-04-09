@@ -119,7 +119,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       company_name: ad.company_name,
       target: ad.target,
       text: ad.text,
-      link: ad.link
+      link: URL
     };
   } catch (error) {
     context.log.error(`Error: ${error.message}`);
