@@ -65,8 +65,13 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       ctr: ctr,
       total_spend: total_spend,
       recent_payment:ad.recent_payment,
-      total_paid: ad.total_paid
-    };
+      total_paid: ad.total_paid,
+      status: ad.status,
+      show_exact_text: ad.show_exact_text,
+      coupon_code: ad.coupon_code,
+      target: ad.target,
+      intro_text: ad.intro_text
+    };  
 
     context.log.info(`Successfully fetched advertisement details and metrics`);
     return result;
