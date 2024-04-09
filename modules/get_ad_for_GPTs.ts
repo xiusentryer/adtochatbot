@@ -106,17 +106,20 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     const ad = adDetails[0];
 
     if(ad.budget-ad.bid<0) throw new Error("Failed to fetch ads.")
-
+    /*
     let formattedText = ad.text;
     if (ad.text.includes(ad.highlight)) {
       formattedText = ad.text.replace(ad.highlight, `${ad.highlight}(${URL})`);
     } else {
       formattedText += ` (${URL})`;
     }
-
+    */
     context.log.info("Successfully processed advertisement impression and retrieved details.");
     return {
-      text: formattedText,
+      company_name: ad.company_name,
+      target: ad.target,
+      text: ad.text,
+      link: ad.link
     };
   } catch (error) {
     context.log.error(`Error: ${error.message}`);
