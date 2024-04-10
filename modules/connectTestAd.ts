@@ -10,7 +10,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
   const requestBody = await request.json();
   const chatbotapiKey = requestBody.chatbotapiKey;
-  const ad_id = 1;
+  const ad_id = 1; // This seems to be statically set to 1, consider making this dynamic if necessary
 
   if (!chatbotapiKey) {
     return {
@@ -40,6 +40,26 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     const chatbotID = chatbots[0].id;
 
+    // Check if a record already exists with the given ad_id and chatbot_id
+    const existingRecordUrl = `${baseUrl}/rest/v1/chatbot_ads?select=id&ad_id=eq.${ad_id}&chatbot_id=eq.${chatbotID}`;
+    const existingRecordResponse = await fetch(existingRecordUrl, {
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!existingRecordResponse.ok) throw new Error(`Failed to fetch existing records: ${existingRecordResponse.statusText}`);
+
+    const existingRecords = await existingRecordResponse.json();
+    if (existingRecords.length > 0) {
+      // Record already exists, so we don't create a new one
+      return {
+        status: 409, // HTTP 409 Conflict
+        body: { message: "Record already exists" },
+      };
+    }
 
     const updateImpressionsResponse = await fetch(`${baseUrl}/rest/v1/chatbot_ads`, {
       method: 'POST',
