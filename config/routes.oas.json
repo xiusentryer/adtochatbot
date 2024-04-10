@@ -374,6 +374,31 @@
         },
         "operationId": "95f2199c-03c6-4341-abdc-44c33960a808"
       }
+    },
+    "/connectTestAd": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "Connect Test Ad",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "default",
+            "module": "$import(./modules/connectTestAd)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "api-key-inbound-4",
+              "clear-headers-inbound",
+              "set-headers-inbound"
+            ]
+          }
+        },
+        "operationId": "e6e40995-255b-4ef4-aa23-44f96a7fbbfa"
+      }
     }
   }
 }

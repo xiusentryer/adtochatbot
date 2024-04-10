@@ -95,6 +95,18 @@
       },
       "name": "api-key-inbound-3",
       "policyType": "api-key-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": true,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound-4",
+      "policyType": "api-key-inbound"
     }
   ]
 }
