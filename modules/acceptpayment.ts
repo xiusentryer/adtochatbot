@@ -87,7 +87,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
       body: JSON.stringify({ 
         budget: newBudget,
         total_paid: newTotalPaid,
-        recent_payment: RecentPayment
+        recent_payment: RecentPayment,
+        status: "Campaign Activated and Running"
         }),
     });
 
