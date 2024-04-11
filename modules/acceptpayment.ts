@@ -57,8 +57,21 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
     }
 
     // Calculate new budget
-    const newBudget = adData.budget + addbudget;
+    
+
+
     const newTotalPaid = adData.total_paid + addbudget;
+
+
+    const addedBudget = adData.budget + addbudget;
+    let newBudget = addedBudget;
+
+    if (addedBudget > newTotalPaid) {
+      newBudget = adData.budget;
+    } else {
+      newBudget = adData.budget + addbudget;
+    }
+
     const RecentPayment = addbudget;
 
     // Update the advertisement's budget
