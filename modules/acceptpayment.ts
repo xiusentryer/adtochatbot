@@ -58,6 +58,8 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
 
     // Calculate new budget
     const newBudget = adData.budget + addbudget;
+    const newTotalPaid = adData.total_paid + addbudget;
+    const RecentPayment = addbudget;
 
     // Update the advertisement's budget
     const adUpdateUrl = `https://app.adtochatbot.com/rest/v1/advertisement?ad_id=eq.${ad_id}`;
@@ -69,7 +71,11 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         'Content-Type': 'application/json',
         'Prefer': 'return=representation',
       },
-      body: JSON.stringify({ budget: newBudget }),
+      body: JSON.stringify({ 
+        budget: newBudget,
+        total_paid: newTotalPaid,
+        recent_payment: RecentPayment
+        }),
     });
 
     if (!adUpdateResponse.ok) {
