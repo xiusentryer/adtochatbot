@@ -88,7 +88,7 @@ export default async function (request: ZuploRequest, context: ZuploContext) {
         budget: newBudget,
         total_paid: newTotalPaid,
         recent_payment: RecentPayment,
-        status: "Campaign Activated and Running"
+        status: "Payment Confirmed - Awaiting GPTs Optimization"
         }),
     });
 
